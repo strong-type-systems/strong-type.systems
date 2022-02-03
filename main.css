@@ -27,6 +27,10 @@ body, html {
       */
      display:inline-block;
      text-align: left;
+
+     -webkit-print-color-adjust: exact !important;   /* Chrome, Safari, Edge */
+    color-adjust: exact !important;
+
      /* the internal em of the logo */
      --logo-font-size: 50pt;
      /* size of the svg logo */
@@ -35,10 +39,10 @@ body, html {
      /* positioning of the protocol and subsequent of the
       * rest of the logo main text.
       */
-     --x-translate: calc(1.525 * var(--logo-font-size));
+     --x-translate: calc((1.525 + var(--x-compensate-missing-protocol, 0))* var(--logo-font-size));
      --y-translate: calc(0.3 * var(--logo-font-size));
      /* wrapped version */
-     --wrapped-vertial-type-adjust: calc(-0.1 * var(--logo-font-size));
+     --wrapped-y-translate: calc(-0.1 * var(--logo-font-size));
      font-size: var(--logo-font-size);
      line-height: var(--logo-font-size);
 }
@@ -68,6 +72,10 @@ body, html {
      font-weight: 800;
 }
 
+.sts_logo-hyphen {
+     /* A manual kerning as the current versio of the font is missing this. */
+     margin-right: -0.1em;
+}
 
 .sts_logo-systems {
      font-weight: 100;
@@ -101,7 +109,7 @@ body, html {
 .sts_logo-wrapped .sts_logo-strong,
 .sts_logo-wrapped .sts_logo-type,
 .sts_logo-wrapped .sts_logo-systems {
-     top: var(--wrapped-vertial-type-adjust);
+     top: var(--wrapped-y-translate);
 }
 
 /* right align */
@@ -111,25 +119,33 @@ body, html {
 }
 
 
+
+
+/* TODO make a logo without the url protocol and special characters*/
+
+.sts_logo.sts_logo-wrapped.sts_logo-no_url {
+     --wrapped-y-translate: calc(1.1 * var(--logo-font-size));
+     --x-compensate-missing-protocol: 0;
+}
+
+/* doesn't work well together with .sts_logo-wrapped.*/
+.sts_logo.sts_logo-no_url {
+    /*
+     * original is 1.525
+     * without protocol is 2
+     * so the protocol is responsible for 0.475
+     */
+     --x-compensate-missing-protocol: 0.475;
+}
+
 /* END logo setup */
 /* start page setup */
 
-header{
+body {
      display: flex;
      justify-content: center;
 }
 
-header .sts_logo-wrapper{
+header .sts_logo-wrapper {
      margin-right: var(--signet-size);
-}
-
-
-/* Just playing arounf, likely to disappear again.*/
-.sts_logo .sts_logo-fleeting {
-     transition: filter 0.3s ease-in-out;
-     filter: blur(100px);
-}
-
-.sts_logo:hover .sts_logo-fleeting {
-     filter: blur(0);
 }
