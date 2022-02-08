@@ -6,7 +6,7 @@
 """
 
 
-def print_media_queries(minSize, maxSize, step, minFontsize, maxFontsize):
+def print_media_queries(minSize, maxSize, step, unit, minFontsize, maxFontsize):
     print(f"""\
 :root {{
     --animation-position-mediaq: {minSize};
@@ -20,7 +20,7 @@ def print_media_queries(minSize, maxSize, step, minFontsize, maxFontsize):
         # max-width means: equal or narrower
         # min-width means: equal or wider
         print(f"""\
-@media (min-width: {pos}px) {{
+@media (min-width: {pos}{unit}) {{
     :root {{
         --animation-progress: {progress};
         --animation-position-mediaq: {pos};
@@ -29,4 +29,6 @@ def print_media_queries(minSize, maxSize, step, minFontsize, maxFontsize):
 }}""")
 
 if __name__ == '__main__':
-    print_media_queries(400, 1400, 100, 18, 50)
+    # using step 5 for used queries
+    # and step 1 for the query at 24em ... :-/
+    print_media_queries(20, 100, 1 , 'em', 1.5, 50/12)
