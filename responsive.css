@@ -15,8 +15,8 @@
        </svg>");
 }
 
-body, html {
-
+body {
+    flex-direction: column;
 }
 
 .sts_logo {
@@ -31,28 +31,29 @@ body, html {
      -webkit-print-color-adjust: exact !important;   /* Chrome, Safari, Edge */
     color-adjust: exact !important;
 
-     /* the internal em of the logo */
-     --logo-font-size: calc(1pt * var(--logo-font-size-numeric));
-
 
      /* size of the svg logo */
-     --signet-size: calc(1.75 * var(--logo-font-size));
-     --logo-font-size-protocol: calc(0.26667 * var(--logo-font-size));
+     --signet-size: 1.75em;
+     --logo-font-size-protocol: 0.26667;
      /* positioning of the protocol and subsequent of the
       * rest of the logo main text.
       */
-     --x-translate: calc((1.525 + var(--x-compensate-missing-protocol, 0) * 0.475) * var(--logo-font-size));
-     --y-translate: calc(0.3 * var(--logo-font-size));
+     --x-translate: calc((1.525 + var(--x-compensate-missing-protocol, 0) * 0.475));
+     --y-translate: 0.3;
      /* wrapped version */
-     --wrapped-y-translate: calc(-0.1 * var(--logo-font-size));
-     font-size: var(--logo-font-size);
-     line-height: var(--logo-font-size);
+     --wrapped-y-translate: -0.1;
+     /* the internal em of the logo */
+     font-size: calc(1rem * var(--logo-font-size-numeric) );
+     line-height: 1em;
 }
 
 .sts_logo-wrapper {
      display: inline-block;
      min-height: var(--signet-size);
-     padding-right: var(--x-translate);
+     padding-right: calc(var(--x-translate) * 1em);
+
+     text-decoration: none;
+     color: black;
 }
 
 .sts_logo-wrapper::before {
@@ -65,7 +66,7 @@ body, html {
 }
 
 .sts_logo-protocol{
-     font-size: var(--logo-font-size-protocol);
+     font-size: calc( 1em * var(--logo-font-size-protocol));
      font-weight: 400;
 }
 
@@ -83,13 +84,17 @@ body, html {
      font-weight: 100;
 }
 
-.sts_logo-protocol,
 .sts_logo-strong,
 .sts_logo-type,
 .sts_logo-systems {
      position: relative;
-     top: var(--y-translate);
-     left: var(--x-translate);
+     top: calc(1em * var(--y-translate) );
+     left: calc(1em * var(--x-translate) );
+}
+.sts_logo-protocol {
+     position: relative;
+     top: calc(1em * (var(--y-translate) / var(--logo-font-size-protocol)));
+     left: calc(1em * (var(--x-translate) / var(--logo-font-size-protocol)));
 }
 
 
@@ -111,7 +116,7 @@ body, html {
 .sts_logo-strong,
 .sts_logo-type,
 .sts_logo-systems {
-     top: var(--wrapped-y-translate);
+     top: calc(1em * var(--wrapped-y-translate));
 }
 
 /* right align */
@@ -126,7 +131,7 @@ body, html {
 /* TODO make a logo without the url protocol and special characters*/
 
 .sts_logo {
-     --wrapped-y-translate: calc(1.1 * var(--logo-font-size));
+     --wrapped-y-translate: 1.1;
      --x-compensate-missing-protocol: 0;
 }
 
@@ -159,13 +164,23 @@ body, html {
 
 
 .sts_logo {
-     --wrapped-y-translate: calc(1.1 * var(--logo-font-size));
+     --wrapped-y-translate: 1.1;
      --x-compensate-missing-protocol: 0;
-     padding-bottom: var(--wrapped-y-translate);
+     padding-bottom: calc(1em * var(--wrapped-y-translate));
 }
 
+
+
 /* with url */
-@media (min-width: 800px) {
+/* The em base in media queries comes from the user’s default setting
+ * (usually 16px browser if not changed).
+ * Also, the browser zoom changes this, so when zooming in, the page
+ * changes into moblile as well, but it would so also with pixels in
+ * the query.
+ * UNFORRTUNATELY: changing the :root font-size is not affecting the
+ * media query results,hence it's not super useful.
+ */
+@media (min-width: 50em) { /* 800px at 12pt/16px */
     .sts_logo-protocol, .sts_logo-hyphen, .sts_logo-dot {
         display: initial;
     }
@@ -174,21 +189,68 @@ body, html {
     }
     .sts_logo {
         --x-compensate-missing-protocol: 0;
-        --wrapped-y-translate: calc(-0.1 * var(--logo-font-size));
+        --wrapped-y-translate: -0.1;
         padding-bottom: 0;
     }
 }
 
+header{
+    margin-right: 1em;
+    /* for nav menu alignmnet right */
+    display: block;
+    align-items: initial;
+}
+
+.main-menu {
+    margin-top: .5em;
+}
+/* make this expandable on click*/
+.main-menu > ul li {
+    text-align: center;
+    border-bottom: 1px dotted;
+}
+
+
+article {
+    margin-left: 0;
+}
+
 :root {
-    --animation-position-mediaq: 400;
-    --logo-font-size-numeric: 18;
+    --animation-position-mediaq: 20;
+    --logo-font-size-numeric: 1.5;
     --animation-progress: 0;
 }
-@media (min-width: 500px) {
+
+/* 24em 384px is good for the break, will stay flat at top for
+ * bigger phones then.
+ */
+@media (min-width: 24em) {
     :root {
-        --animation-progress: 0.1;
-        --animation-position-mediaq: 500;
-        --logo-font-size-numeric: 21.2;
+        --animation-progress: 0.05;
+        --animation-position-mediaq: 24;
+        --logo-font-size-numeric: 1.6333333333333333;
+    }
+}
+
+@media (min-width: 25em) {
+    :root {
+        --animation-progress: 0.0625;
+        --animation-position-mediaq: 25;
+        --logo-font-size-numeric: 1.6666666666666667;
+    }
+}
+@media (min-width: 30em) {
+    :root {
+        --animation-progress: 0.125;
+        --animation-position-mediaq: 30;
+        --logo-font-size-numeric: 1.8333333333333335;
+    }
+}
+@media (min-width: 35em) {
+    :root {
+        --animation-progress: 0.1875;
+        --animation-position-mediaq: 35;
+        --logo-font-size-numeric: 2.0;
     }
 
     /* unwrap logo here*/
@@ -206,70 +268,103 @@ body, html {
         content: none;
         display: none;
     }
-    .sts_logo-protocol,
+
     .sts_logo-strong,
     .sts_logo-type,
     .sts_logo-systems {
-        top: var(--y-translate);
-        left: var(--x-translate);
+        top: calc(1em * var(--y-translate));
+        left: calc(1em * var(--x-translate));
+    }
+
+    .sts_logo-protocol {
+        top: calc(1em  * (var(--y-translate) / var(--logo-font-size-protocol)));
+        left: calc(1em * (var(--x-translate) / var(--logo-font-size-protocol)));
     }
 
     .sts_logo-systems {
         display: inline;
         text-align: initial;
     }
+    .main-menu{
+        margin-top: 0;
+    }
+    .main-menu > ul li{
+        border: none;
+        text-align: right;
+    }
 
-}
-@media (min-width: 600px) {
-    :root {
-        --animation-progress: 0.2;
-        --animation-position-mediaq: 600;
-        --logo-font-size-numeric: 24.4;
+    .main-menu > ul > li {
+        display: inline;
+        margin-right: calc(.2rem * var(--logo-font-size-numeric));
+    }
+
+    .main-menu,
+    article {
+        margin-left: calc(2.1rem * var(--logo-font-size-numeric));
     }
 }
-@media (min-width: 700px) {
+@media (min-width: 40em) {
     :root {
-        --animation-progress: 0.3;
-        --animation-position-mediaq: 700;
-        --logo-font-size-numeric: 27.6;
+        --animation-progress: 0.25;
+        --animation-position-mediaq: 40;
+        --logo-font-size-numeric: 2.166666666666667;
     }
 }
-@media (min-width: 800px) {
+@media (min-width: 45em) {
     :root {
-        --animation-progress: 0.4;
-        --animation-position-mediaq: 800;
-        --logo-font-size-numeric: 30.8;
+        --animation-progress: 0.3125;
+        --animation-position-mediaq: 45;
+        --logo-font-size-numeric: 2.3333333333333335;
+    }
+}
+
+@media (min-width: 50em) { /* 800px at 12pt/16px */
+    :root {
+        --animation-progress: 0.375;
+        --animation-position-mediaq: 50;
+        --logo-font-size-numeric: 2.5;
     }
     .sts_logo {
         --x-compensate-missing-protocol: 0;
     }
+    .main-menu,
+    article {
+        margin-left: calc(2.5rem * var(--logo-font-size-numeric));
+    }
 }
-@media (min-width: 900px) {
+@media (min-width: 55em) {
+    :root {
+        --animation-progress: 0.4375;
+        --animation-position-mediaq: 55;
+        --logo-font-size-numeric: 2.666666666666667;
+    }
+}
+@media (min-width: 60em) {
     :root {
         --animation-progress: 0.5;
-        --animation-position-mediaq: 900;
-        --logo-font-size-numeric: 34.0;
+        --animation-position-mediaq: 60;
+        --logo-font-size-numeric: 2.8333333333333335;
     }
 }
-@media (min-width: 1000px) {
+@media (min-width: 65em) {
     :root {
-        --animation-progress: 0.6;
-        --animation-position-mediaq: 1000;
-        --logo-font-size-numeric: 37.2;
+        --animation-progress: 0.5625;
+        --animation-position-mediaq: 65;
+        --logo-font-size-numeric: 3.0;
     }
 }
-@media (min-width: 1100px) {
+@media (min-width: 70em) {
     :root {
-        --animation-progress: 0.7;
-        --animation-position-mediaq: 1100;
-        --logo-font-size-numeric: 40.4;
+        --animation-progress: 0.625;
+        --animation-position-mediaq: 70;
+        --logo-font-size-numeric: 3.166666666666667;
     }
 }
-@media (min-width: 1200px) {
+@media (min-width: 75em) { /* 1200px at 12pt/16px */
     :root {
-        --animation-progress: 0.8;
-        --animation-position-mediaq: 1200;
-        --logo-font-size-numeric: 43.6;
+        --animation-progress: 0.6666666666666666;
+        --animation-position-mediaq: 75;
+        --logo-font-size-numeric: 3.2777777777777777;
     }
 
     /* wrap logo here */
@@ -291,7 +386,7 @@ body, html {
     .sts_logo .sts_logo-strong,
     .sts_logo .sts_logo-type,
     .sts_logo .sts_logo-systems {
-         top: var(--wrapped-y-translate);
+         top: calc(1em * var(--wrapped-y-translate));
     }
 
     /* right align */
@@ -303,32 +398,119 @@ body, html {
     body {
         display: flex;
         justify-content: center;
+        flex-direction: row;
     }
 
-}
-@media (min-width: 1300px) {
-    :root {
-        --animation-progress: 0.9;
-        --animation-position-mediaq: 1300;
-        --logo-font-size-numeric: 46.8;
+    header{
+        /* for nav menu alignmnet right */
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap-reverse;
+        align-items: end;
+        margin-right: 1.5em;
+    }
+
+    .main-menu > ul {
+        text-align: right;
+    }
+    .main-menu > ul li{
+        display: block;
+        margin-right: 0;
+    }
+
+    article {
+        /* only in two column laayout aim for the "Strong-Type x-height"*/
+        margin-top: calc(1.45rem * var(--logo-font-size-numeric));
+        margin-left: 0;
     }
 }
-@media (min-width: 1400px) {
+@media (min-width: 80em) {
+    :root {
+        --animation-progress: 0.75;
+        --animation-position-mediaq: 80;
+        --logo-font-size-numeric: 3.5;
+    }
+}
+@media (min-width: 85em) {
+    :root {
+        --animation-progress: 0.8125;
+        --animation-position-mediaq: 85;
+        --logo-font-size-numeric: 3.666666666666667;
+    }
+}
+@media (min-width: 90em) {
+    :root {
+        --animation-progress: 0.875;
+        --animation-position-mediaq: 90;
+        --logo-font-size-numeric: 3.8333333333333335;
+    }
+}
+@media (min-width: 95em) {
+    :root {
+        --animation-progress: 0.9375;
+        --animation-position-mediaq: 95;
+        --logo-font-size-numeric: 4.0;
+    }
+}
+@media (min-width: 100em) {
     :root {
         --animation-progress: 1.0;
-        --animation-position-mediaq: 1400;
-        --logo-font-size-numeric: 50.0;
+        --animation-position-mediaq: 100;
+        --logo-font-size-numeric: 4.166666666666667;
     }
 }
+
 
 /* start page setup */
 
 
-
+/* for centering something like this to compensate the logo
 header .sts_logo-wrapper {
      margin-right: var(--signet-size);
 }
+*/
+:root{
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    font-size: 1.2rem;
+}
+
+body{
+    margin: 1em;
+    display: flex;
+}
 
 article {
-    font-family: 'Flow Rounded', cursive;
+    font-family: 'RobotoFlex', sans;
+    max-width: 32.5em;
+    --hyphens: auto;
+    -webkit-hyphens: var(--hyphens);
+       -moz-hyphens: var(--hyphens);
+        -ms-hyphens: var(--hyphens);
+            hyphens: var(--hyphens);
+    line-height: calc(max(110%, 130% * min(32.5, var(--animation-position-mediaq)) / 32.5));
+}
+
+h1, h2, h3{
+    font-family: "Roboto Slab", serif;
+    font-weight: 500;
+}
+
+
+.main-menu > ul {
+    font-family: 'RobotoFlex', sans;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main-menu > ul li > a {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+
+.main-menu > ul li.active a {
+    content: " ◆";
+    color: #c83737;
 }
