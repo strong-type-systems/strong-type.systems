@@ -1,6 +1,32 @@
 
 
 :root{
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    --document-font-size-scale: 1.2;
+    /* The optical size will always be relative to 16px/12pt in this
+     * scenario, as we have no way (*yet) to get the actual (user defined)
+     * default font-size without javascript.
+     *
+     * (*yet): in the future calc(1rem/1pt) should result in a blank number
+     * in css types, converted to pt and stripped from it's unit. It's
+     * already in the standard.
+     */
+    --font-size-constant-pt: 12;
+    --font-size-rem: 1;
+    /* setting document rem */
+    font-size: calc(1rem * var(--document-font-size-scale));
+}
+
+nav *, main *, footer, footer * {
+    font-size: calc(1rem * var(--font-size-rem));
+    font-variation-settings: "opsz" calc(var(--font-size-constant-pt) * var(--document-font-size-scale) * var(--font-size-rem));
+}
+
+:root {
+    --text-color: black;
+    --highlight-color: #c83737;
+    color: var(--text-color);
     /* To change the background color in CSS, wich is hardcoded right now (#23c83737)
      *  use flter to dye e.g.:
      *     fiilter: hue-rotate(123deg) saturate(0.5) brightness(390%) saturate(2)
@@ -20,8 +46,8 @@ body {
 }
 
 .sts_logo {
-     color: black;
      font-family: 'RobotoSlab', serif;
+     color: var(--text-color);
      /* should must not be inline but block or inline-block work
       * inline-block is nice to center it using text-align.
       */
@@ -53,7 +79,7 @@ body {
      padding-right: calc(var(--x-translate) * 1em);
 
      text-decoration: none;
-     color: black;
+     color: var(--text-color);
 }
 
 .sts_logo-wrapper::before {
@@ -345,26 +371,11 @@ article {
         --animation-position-mediaq: 60;
         --logo-font-size-numeric: 2.8333333333333335;
     }
-}
-@media (min-width: 65em) {
+}@media (min-width: 64em) { /* 1024px at 12pt/16px */
     :root {
-        --animation-progress: 0.5625;
-        --animation-position-mediaq: 65;
-        --logo-font-size-numeric: 3.0;
-    }
-}
-@media (min-width: 70em) {
-    :root {
-        --animation-progress: 0.625;
-        --animation-position-mediaq: 70;
-        --logo-font-size-numeric: 3.166666666666667;
-    }
-}
-@media (min-width: 75em) { /* 1200px at 12pt/16px */
-    :root {
-        --animation-progress: 0.6666666666666666;
-        --animation-position-mediaq: 75;
-        --logo-font-size-numeric: 3.2777777777777777;
+        --animation-progress: 0.55;
+        --animation-position-mediaq: 64;
+        --logo-font-size-numeric: 2.966666666666667;
     }
 
     /* wrap logo here */
@@ -424,6 +435,28 @@ article {
         margin-left: 0;
     }
 }
+
+@media (min-width: 65em) {
+    :root {
+        --animation-progress: 0.5625;
+        --animation-position-mediaq: 65;
+        --logo-font-size-numeric: 3.0;
+    }
+}
+@media (min-width: 70em) { /* 1120px at 12pt/16px */
+    :root {
+        --animation-progress: 0.625;
+        --animation-position-mediaq: 70;
+        --logo-font-size-numeric: 3.166666666666667;
+    }
+}
+@media (min-width: 75em) { /* 1200px at 12pt/16px */
+    :root {
+        --animation-progress: 0.6666666666666666;
+        --animation-position-mediaq: 75;
+        --logo-font-size-numeric: 3.2777777777777777;
+    }
+}
 @media (min-width: 80em) {
     :root {
         --animation-progress: 0.75;
@@ -464,31 +497,30 @@ article {
 /* start page setup */
 
 
-/* for centering something like this to compensate the logo
-header .sts_logo-wrapper {
-     margin-right: var(--signet-size);
-}
-*/
-:root{
-    -webkit-text-size-adjust: none;
-    text-size-adjust: none;
-    font-size: 1.2rem;
-}
-
-body{
+body {
     margin: 1em;
     display: flex;
 }
 
 article {
     font-family: 'RobotoFlex', sans;
-    max-width: 32.5em;
+    --max-line-len: 30;
+    max-width: calc(1em * var(--max-line-len));;
     --hyphens: auto;
     -webkit-hyphens: var(--hyphens);
        -moz-hyphens: var(--hyphens);
         -ms-hyphens: var(--hyphens);
             hyphens: var(--hyphens);
-    line-height: calc(max(110%, 130% * min(32.5, var(--animation-position-mediaq)) / 32.5));
+    --line-height: calc(max(1.1, 1.3 * min(var(--max-line-len), var(--animation-position-mediaq)) / var(--max-line-len)));
+    line-height: var(--line-height);
+}
+
+
+h1, h2, h3, p {
+    margin-top: calc(.5rem * var(--line-height)) ;
+    margin-bottom: calc(.5rem * var(--line-height));
+}
+
 h1, h2, h3 {
     font-family: "RobotoSlab", serif;
 }
@@ -508,11 +540,22 @@ h1 {
 
 .main-menu > ul li > a {
     text-decoration: none;
-    color: black;
-    font-weight: 600;
+    color: var(--text-color);
+    --font-size-rem: 1.1;
 }
 
 .main-menu > ul li.active a {
-    content: " ◆";
-    color: #c83737;
+    color: var(--highlight-color);
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: underline solid var(--text-color) from-font;
+}
+
+/* preventing FireFox from breaking the last word of a paragraph
+ * Chrome behaves better in this case.
+ */
+.nowrap{
+    hyphens: none;
 }
