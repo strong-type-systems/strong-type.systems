@@ -20,8 +20,8 @@ body {
 }
 
 .sts_logo {
-     font-family: 'Roboto Slab', serif;
      color: black;
+     font-family: 'RobotoSlab', serif;
      /* should must not be inline but block or inline-block work
       * inline-block is nice to center it using text-align.
       */
@@ -489,11 +489,13 @@ article {
         -ms-hyphens: var(--hyphens);
             hyphens: var(--hyphens);
     line-height: calc(max(110%, 130% * min(32.5, var(--animation-position-mediaq)) / 32.5));
+h1, h2, h3 {
+    font-family: "RobotoSlab", serif;
 }
 
-h1, h2, h3{
-    font-family: "Roboto Slab", serif;
-    font-weight: 500;
+h1 {
+    --font-size-rem: 1.5;
+    font-weight: 330;
 }
 
 

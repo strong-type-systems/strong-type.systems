@@ -20,7 +20,7 @@ body, html {
 }
 
 .sts_logo {
-     font-family: 'Roboto Slab', serif;
+     font-family: 'RobotoSlab', serif;
      color: black;
      /* should must not be inline but block or inline-block work
       * inline-block is nice to center it using text-align.
