@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+  <head>
+    {%- include head.html -%}
+  </head>
+  <body>
+    <header>
+      {%- include sts_logo.html -%}
+
+      <nav class="main-menu">
+        <!-- todo: include and generate -->
+         <ul>
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/jobs">Jobs</a></li>
+            <li><a href="/team">Team</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a lang="de" href="./impressum">Impressum</a></li>
+         </ul>
+      </nav>
+    </header>
+    <main class="{{ page.class }}">
+      <article>
+        <h1>
+            {% if page.headline -%}
+                {{ page.headline }}
+            {%- else -%}
+                {{ page.title }}
+            {%- endif -%}
+        </h1>
+        {{ content }}
+      </article>
+    </main>
+    <footer>
+          {%- capture footer -%}{%- include footer.md -%}{%- endcapture- %}
+          {{ footer | markdownify }}
+    </footer>
+  </body>
+</html>
+
+
