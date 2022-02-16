@@ -34,8 +34,8 @@ defaults:
       order: 100
       listed: true
       styles:
-        - ./fonts/fonts.css
-        - ./css/main.css
+        - ./style/fonts/fonts.css
+        - ./style/main.css
       modules:
         - ./js/main.mjs
 
