@@ -15,6 +15,7 @@
     --font-size-constant-pt: 12;
     --font-size-rem: 1;
     /* setting document rem */
+    font-family: 'RobotoFlex', sans;
     font-size: calc(1rem * var(--document-font-size-scale));
 }
 
