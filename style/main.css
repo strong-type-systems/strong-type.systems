@@ -511,6 +511,10 @@ body {
     flex-wrap: wrap;
 }
 
+header, main {
+     flex: 1;
+}
+
 footer {
     flex: 0 0 100%;
     margin-top: 5em;
