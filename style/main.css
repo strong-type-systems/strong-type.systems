@@ -262,7 +262,7 @@ header{
 
 .main-menu .social_links {
     display: flex;
-    gap: .5em;
+    gap: .4em;
 }
 
 .main-menu .social_links a {
@@ -603,6 +603,10 @@ h1 {
 }
 
 
+.main-menu{
+     --font-size-rem: 1.1;
+}
+
 .main-menu > ul {
     font-family: 'RobotoFlex', sans;
     list-style: none;
@@ -613,7 +617,6 @@ h1 {
 .main-menu > ul li > a {
     text-decoration: none;
     color: var(--text-color);
-    --font-size-rem: 1.1;
 }
 
 .main-menu > ul li.active a {
@@ -634,8 +637,8 @@ a {
     white-space: nowrap;
 }
 
-.main-menu .social_links a {
-    font-size: 1.5em;
+.main-menu .social_links {
+    --font-size-rem: 1.6;
 }
 
 a.social_link {
