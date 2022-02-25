@@ -17,11 +17,16 @@
     /* setting document rem */
     font-family: 'RobotoFlex', sans;
     font-size: calc(1rem * var(--document-font-size-scale));
+
+    --font-ytde-default: -203;
+    --font-ytde-min: -130; /* global/axis min is around -100*/
 }
 
 nav *, main *, footer, footer * {
     font-size: calc(1rem * var(--font-size-rem));
-    font-variation-settings: "opsz" calc(var(--font-size-constant-pt) * var(--document-font-size-scale) * var(--font-size-rem));
+    font-variation-settings: "opsz" calc(var(--font-size-constant-pt) * var(--document-font-size-scale) * var(--font-size-rem)),
+        "YTDE" var(--font-ytde, var(--font-ytde-default))
+        ;
 }
 
 :root {
@@ -547,6 +552,7 @@ body {
     margin: 1em;
     display: flex;
     flex-wrap: wrap;
+    background: white;
 }
 
 header, main {
@@ -570,8 +576,16 @@ article {
        -moz-hyphens: var(--hyphens);
         -ms-hyphens: var(--hyphens);
             hyphens: var(--hyphens);
-    --line-height: calc(max(1.1, 1.3 * min(var(--max-line-len), var(--animation-position-mediaq)) / var(--max-line-len)));
+    /* unfortunately --animation-position-mediaq is not a good property
+     * to determine actual line length. It's better in the lower range
+     * though, as we have a single column layout then.
+     */
+    --max-pos-mediaq: 40;
+    --min-pos-mediaq: 20;
+    --line-len-t: calc((min(var(--max-pos-mediaq), var(--animation-position-mediaq)) - var(--min-pos-mediaq)) / (var(--max-pos-mediaq) - var(--min-pos-mediaq)));
+    --line-height: calc(1 + 0.3 * var(--line-len-t));
     line-height: var(--line-height);
+     --font-ytde: calc( ((var(--font-ytde-default) - var(--font-ytde-min)) * var(--line-len-t)) + var(--font-ytde-min));
 }
 
 h1, h2, h3, p {
