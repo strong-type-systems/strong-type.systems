@@ -1,3 +1,3 @@
 
 
-[Impressum](./contact#Impressum)
+[Impressum](/pages/contact.html#Impressum)

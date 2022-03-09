@@ -10,10 +10,14 @@
       <nav class="main-menu">
         <!-- todo: include and generate -->
          <ul>
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="/jobs">Jobs</a></li>
-            <li><a href="/team">Team</a></li>
-            <li><a href="/contact">Contact</a></li>
+           {% for item in site.data.navigation %}
+           <li {% if page.url == item.url -%}
+                class="active"
+            {%- endif %}
+            ><a href="{{ item.url }}">{{ item.label }}</a></li>
+          {% endfor %}
+
+            <!-- endfor -->
             <li class="social_links">
               <a class="social_link social_link-github" href="https://github.com/strong-type-systems" title="@strong-type-systems on GitHub">@strong-type-systems on GitHub</a>
               <a class="social_link social_link-twitter" href="https://twitter.com/StrongTypeSys" title="@StrongTypeSys on Twitter">@StrongTypeSys on Twitter</a>
