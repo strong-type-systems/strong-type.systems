@@ -369,7 +369,7 @@ article {
 
     .main-menu,
     article {
-        margin-left: calc(2.1rem * var(--logo-font-size-numeric));
+        margin-left: calc(1.85rem * var(--logo-font-size-numeric));
     }
 }
 @media (min-width: 40em) {
@@ -398,7 +398,7 @@ article {
     }
     .main-menu,
     article {
-        margin-left: calc(2.5rem * var(--logo-font-size-numeric));
+        margin-left: calc(2.3rem * var(--logo-font-size-numeric));
     }
 }
 @media (min-width: 55em) {
@@ -549,7 +549,9 @@ article {
 
 
 body {
-    margin: 1em;
+    margin: 1em auto;
+    padding: 0 1em;
+    width: fit-content;
     display: flex;
     flex-wrap: wrap;
     background: white;
@@ -570,7 +572,7 @@ footer {
 article {
     font-family: 'RobotoFlex', sans;
     --max-line-len: 30;
-    max-width: calc(1em * var(--max-line-len));;
+    max-width: calc(1em * var(--max-line-len));
     --hyphens: auto;
     -webkit-hyphens: var(--hyphens);
        -moz-hyphens: var(--hyphens);
@@ -593,13 +595,19 @@ h1, h2, h3, p {
     margin-bottom: calc(.5rem * var(--line-height));
 }
 
-h1, h2, h3 {
+h1, h3 {
     font-family: "RobotoSlab", serif;
 }
 
 h1 {
     --font-size-rem: 1.5;
-    font-weight: 330;
+    font-weight: 340;
+}
+
+h2 {
+    font-weight: 400;
+    --font-size-rem: 1.2;
+    font-family: "RobotoFlex";
 }
 
 
