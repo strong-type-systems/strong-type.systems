@@ -1,11 +1,11 @@
 - url: /
   label: Home
 
-- url: /pages/jobs.html
-  label: Jobs
-
 - url: /pages/team.html
   label: Team
+
+- url: /pages/jobs.html
+  label: Jobs
 
 - url: /pages/contact.html
   label: Contact

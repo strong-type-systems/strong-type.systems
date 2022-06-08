@@ -14,7 +14,7 @@
            <li {% if page.url == item.url -%}
                 class="active"
             {%- endif %}
-            ><a href="{{ item.url }}">{{ item.label }}</a></li>
+            ><a href="{{ item.url | relative_url }}">{{ item.label }}</a></li>
           {% endfor %}
 
             <!-- endfor -->
@@ -30,7 +30,7 @@
     <main class="{{ page.class }}">
       <article>
         <h1>
-            {% if page.headline -%}
+            {%- if page.headline -%}
                 {{ page.headline }}
             {%- else -%}
                 {{ page.title }}

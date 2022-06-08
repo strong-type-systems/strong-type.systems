@@ -20,6 +20,8 @@
 
     --font-ytde-default: -203;
     --font-ytde-min: -130; /* global/axis min is around -100*/
+
+    overflow-y: scroll;
 }
 
 nav *, main *, footer, footer * {
@@ -610,6 +612,13 @@ h2 {
     font-family: "RobotoFlex";
 }
 
+h3 {
+   font-weight: 440;
+}
+
+main ul, main ol {
+    padding-left: 1em;
+}
 
 .main-menu{
      --font-size-rem: 1.1;
@@ -631,7 +640,7 @@ h2 {
     color: var(--highlight-color);
 }
 
-a {
+footer a, main a[href] {
     color: var(--text-color);
     text-decoration: underline solid;
     text-decoration-thickness: from-font;

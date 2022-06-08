@@ -1,3 +1,3 @@
 
 
-[Impressum](/pages/contact.html#Impressum)
+[Impressum]({{ "/pages/contact.html#Impressum" |  relative_url }})
