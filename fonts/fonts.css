@@ -1,0 +1,19 @@
+
+@font-face {
+    font-family: 'RobotoFlex';
+    src: url("./RobotoFlex[GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght].woff2") format("woff2"),
+       url("./RobotoFlex[GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght].woff") format("woff"),
+       url("./RobotoFlex[GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,wdth,wght].ttf") format('truetype')
+       ;
+    font-weight: 100 900;
+    font-style: oblique 0deg -10deg;
+}
+
+@font-face {
+    font-family: 'RobotoSlab';
+    src: url("./RobotoSlab[wght].woff2") format("woff2"),
+       url("./RobotoSlab[wght].woff") format("woff"),
+       url("./RobotoSlab[wght].ttf") format('truetype')
+       ;
+    font-weight: 100 900;
+}
