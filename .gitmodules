@@ -1,0 +1,3 @@
+[submodule "github-web"]
+	path = github-web
+	url = git@github.com:strong-type-systems/strong-type.systems.git
