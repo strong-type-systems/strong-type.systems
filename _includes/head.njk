@@ -1,0 +1,11 @@
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="{{ "/css/sts-signet-favicon.png" | url }}">
+  <title>{{ page.title }}{% if page.title %} | {% endif %}Strong Type Systems</title>
+
+  <link rel="stylesheet" href="{{ "/css/fonts/fonts.css" | url }}">
+  <link rel="stylesheet" href="{{ "/css/main.css" | url }}">
+
+{%- for module in page.modules %}
+  <script src="{{ module | url }}" async type="module"></script>
+{%- endfor -%}

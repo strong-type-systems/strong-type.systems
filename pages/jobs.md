@@ -1,7 +1,9 @@
 ---
 title: Call for Applications
+eleventyNavigation:
+  key: Jobs
+  order: 3
 ---
-
 Feel free to always introduce yourself, regardless if there's an
 explicit vacancy that fits you.
 
