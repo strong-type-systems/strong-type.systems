@@ -2,7 +2,7 @@
 # title: <!-- Hello World -->
 eleventyNavigation:
   key: Home
-  order: 1
+  order: 0
 ---
 
 Strong Type Systems is active at the intersection of typography, software

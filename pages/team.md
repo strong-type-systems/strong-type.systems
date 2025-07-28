@@ -5,8 +5,6 @@ eleventyNavigation:
   order: 2
 ---
 
-WHY?
-
 Become a part: [Job Openings!]({{ "/pages/jobs.html"  }})
 
 ## <a id="Lasse">Lasse Fister</a>
