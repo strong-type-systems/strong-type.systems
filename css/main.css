@@ -474,9 +474,6 @@ article {
         display: initial;
     }
 
-    .main-menu .social_links {
-        margin-top: .5em;
-    }
     .main-menu .social_links a {
         margin: 0;
     }
@@ -656,6 +653,7 @@ footer a, main a[href] {
 
 .main-menu .social_links {
     --font-size-rem: 1.6;
+    margin-top: .5em;
 }
 
 a.social_link {
