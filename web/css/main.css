@@ -722,3 +722,19 @@ a.social_link::before {
 .social_link-rss::before {
     background: no-repeat var(--social-mark-rss);
 }
+
+ol.news{
+    list-style: none;
+    padding: 0;
+}
+.news article{
+    margin: 0;
+    h1 {
+        --font-size: 1.6;
+        --font-wght: 330;
+        a {
+            text-decoration-thickness: 1.5pt;
+        }
+        margin: 0;
+    }
+}

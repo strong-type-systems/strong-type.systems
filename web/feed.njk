@@ -1,0 +1,45 @@
+---json
+{
+  "permalink": "/feed.xml",
+  "layout": null,
+  "eleventyExcludeFromCollections": true,
+  "metadata": {
+    "title": "Strong Type Systems",
+    "description": "Strong Type Systems is active at the intersection of typography, software development and design, combining expertise from different domains, true creative thinking and proficiency.",
+    "language": "en",
+    "base": "https://strong-type.systems/",
+    "author": {
+      "name": "Lasse Fister",
+      "email": "hello@strong-type.systems"
+    }
+  }
+}
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ metadata.language or page.lang }}">
+  <title>{{ metadata.title }}</title>
+  <subtitle>{{ metadata.description }}</subtitle>
+  <link href="{{ permalink | htmlBaseUrl(metadata.base) }}" rel="self" />
+  <link href="{{ metadata.base | addPathPrefixToFullUrl }}" />
+  <updated>{{ collections.news | newestNewsItem | rawNewsDate | dateToRfc3339 }}</updated>
+  <id>{{ metadata.base | addPathPrefixToFullUrl }}</id>
+  <author>
+    <name>{{ metadata.author.name }}</name>
+    <email>{{ metadata.author.email }}</email>
+  </author>
+  {%- for post in collections.news | reverse %}
+  {%- set absolutePostUrl %}{{ post.url | htmlBaseUrl(metadata.base) }}{% endset %}
+  <entry>
+    <title>{{ post.data.title }}</title>
+    <link href="{{ absolutePostUrl }}" />
+    <updated>{{ post.page | rawNewsDate | dateToRfc3339 }}</updated>
+    <id>{{ absolutePostUrl }}</id>
+    <content type="html">
+    {%- set fullContent -%}
+    <p class="lead">{{post.data.lead}}</p>
+    {{ post.content }}
+    {%- endset -%}
+    {{ fullContent | renderTransforms(post.data.page, metadata.base) }}</content>
+  </entry>
+  {%- endfor %}
+</feed>

@@ -17,8 +17,13 @@
   },
   "homepage": "https://gitlab.com/graphicore/strong-type-systems#readme",
   "dependencies": {
+    "@11ty/eleventy": "^3.1.2",
     "@11ty/eleventy-navigation": "^1.0.4",
+    "@11ty/eleventy-plugin-rss": "^2.0.4",
     "eleventy": "^1.0.7",
-    "eslint": "^9.32.0"
+    "eslint": "^9.32.0",
+    "markdown-it": "^14.1.0",
+    "markdown-it-github-headings": "^2.0.1",
+    "nunjucks": "^3.2.4"
   }
 }

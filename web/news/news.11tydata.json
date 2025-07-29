@@ -1,0 +1,5 @@
+{
+    "layout": "news.njk",
+    "navigationActive": "News",
+    "tags": "news"
+}

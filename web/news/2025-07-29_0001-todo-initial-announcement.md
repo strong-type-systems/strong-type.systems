@@ -1,0 +1,12 @@
+---
+title: "TODO: initial announcement"
+lead: >
+    There's no news item to be revealed yet.
+---
+
+And this will be the news body.
+
+## What's next?
+
+We got to make news!
+
