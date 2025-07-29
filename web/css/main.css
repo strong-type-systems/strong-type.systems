@@ -426,7 +426,8 @@ article {
         --animation-position-mediaq: 60;
         --logo-font-size-numeric: 2.8333333333333335;
     }
-}@media (min-width: 64em) { /* 1024px at 12pt/16px */
+}
+@media (min-width: 64em) { /* 1024px at 12pt/16px */
     :root {
         --animation-progress: 0.55;
         --animation-position-mediaq: 64;
@@ -490,10 +491,13 @@ article {
 
 
     article {
-        /* only in two column laayout aim for the "Strong-Type x-height"*/
-        margin-top: calc(1.45rem * var(--logo-font-size-numeric));
+        /* only in two column layout aim to match `article h1` with
+         *  the "Strong-Type" base line.
+         */
+        margin-top: calc(1.25rem * var(--logo-font-size-numeric));
         margin-left: 0;
     }
+
 }
 
 @media (min-width: 65em) {
@@ -596,7 +600,8 @@ article {
     --line-len-t: calc((min(var(--max-pos-mediaq), var(--animation-position-mediaq)) - var(--min-pos-mediaq)) / (var(--max-pos-mediaq) - var(--min-pos-mediaq)));
     --line-height: calc(1 + 0.3 * var(--line-len-t));
     line-height: var(--line-height);
-     --font-ytde: calc( ((var(--font-ytde-default) - var(--font-ytde-min)) * var(--line-len-t)) + var(--font-ytde-min));
+    --font-size: 1.1;
+    --font-ytde: calc( ((var(--font-ytde-default) - var(--font-ytde-min)) * var(--line-len-t)) + var(--font-ytde-min));
 }
 
 h1, h2, h3, p {
@@ -612,9 +617,17 @@ h1 {
     font-family: "RobotoSlab", serif;
 }
 
+article > h1:first-child {
+  margin-top: 0;
+}
+
 h1 {
-    --font-size: 1.9;
-    --font-wght: 300;
+    /* The value 0.8 is to make the uppercase roughly fit to the x-height
+     * of "Strong Type" in two columns. 2.3 is never reached in two-columns
+     * but when in one-column layout, we don't want to shrink further.
+     */
+    --font-size: calc(max(2.3, 0.8 * var(--logo-font-size-numeric)));
+    --font-wght: 170;
 }
 
 h2 {
