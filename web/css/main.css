@@ -1,34 +1,39 @@
 
 
+
+@property --length {
+  syntax: "<length>";
+  initial-value: 0pt;
+  inherits: true;
+}
+
+* {
+    --length: 1rem;
+    /* https://dev.to/janeori/css-type-casting-to-numeric-tanatan2-scalars-582j
+     * safari bug filed, requires calc() wrapper, firefox bug requires 10k */
+    --pt-document-font-size: calc(10000 * tan(atan2(var(--length), 10000pt)));
+    --document-font-size-scale: 1.2;
+    --pt-document-font-size-fallback: calc(12 * var(--document-font-size-scale));
+    --font-size-constant-pt: var(--pt-document-font-size, --pt-document-font-size-fallback);
+
+    font-variation-settings: "opsz" calc(var(--font-size-constant-pt) * var(--font-size)),
+        "YTDE" var(--font-ytde, var(--font-ytde-default)),
+        "wdth" var(--font-wdth, 100),
+        "wght" var(--font-wght, 400)
+        ;
+    font-size: calc(1pt * var(--font-size-constant-pt) * var(--font-size));
+}
+
 :root{
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
-    --document-font-size-scale: 1.2;
-    /* The optical size will always be relative to 16px/12pt in this
-     * scenario, as we have no way (*yet) to get the actual (user defined)
-     * default font-size without javascript.
-     *
-     * (*yet): in the future calc(1rem/1pt) should result in a blank number
-     * in css types, converted to pt and stripped from it's unit. It's
-     * already in the standard.
-     */
-    --font-size-constant-pt: 12;
-    --font-size-rem: 1;
+    font-size: calc(1rem * var(--document-font-size-scale));
+    --font-size: 1;
     /* setting document rem */
     font-family: 'RobotoFlex', sans;
-    font-size: calc(1rem * var(--document-font-size-scale));
-
     --font-ytde-default: -203;
     --font-ytde-min: -130; /* global/axis min is around -100*/
-
     overflow-y: scroll;
-}
-
-nav *, main *, footer, footer * {
-    font-size: calc(1rem * var(--font-size-rem));
-    font-variation-settings: "opsz" calc(var(--font-size-constant-pt) * var(--document-font-size-scale) * var(--font-size-rem)),
-        "YTDE" var(--font-ytde, var(--font-ytde-default))
-        ;
 }
 
 :root {
@@ -65,6 +70,11 @@ body {
     flex-direction: column;
 }
 
+
+.sts_logo, .sts_logo * {
+    font-variation-settings: initial;
+    font-size: inherit;
+}
 .sts_logo {
      font-family: 'RobotoSlab', serif;
      color: var(--text-color);
@@ -550,7 +560,7 @@ article {
 body {
     margin: 1em auto;
     padding: 0 1em;
-    width: fit-content;
+    max-width: 60em;
     display: flex;
     flex-wrap: wrap;
     background: white;
@@ -594,23 +604,28 @@ h1, h2, h3, p {
     margin-bottom: calc(.5rem * var(--line-height));
 }
 
-h1, h3 {
+h2, h3, h4 {
+    text-transform: uppercase;
+}
+
+h1 {
     font-family: "RobotoSlab", serif;
 }
 
 h1 {
-    --font-size-rem: 1.5;
-    font-weight: 340;
+    --font-size: 1.9;
+    --font-wght: 300;
 }
 
 h2 {
-    font-weight: 400;
-    --font-size-rem: 1.2;
+    --font-wght: 550;
+    --font-wdth: 80;
+    --font-size: 1.2;
     font-family: "RobotoFlex";
 }
 
 h3 {
-   font-weight: 440;
+   --font-wght: 440;
 }
 
 main ul, main ol {
@@ -618,7 +633,8 @@ main ul, main ol {
 }
 
 .main-menu{
-     --font-size-rem: 1.1;
+     --font-size: 1.1;
+    text-transform: uppercase;
 }
 
 .main-menu > ul {
@@ -652,7 +668,7 @@ footer a, main a[href] {
 }
 
 .main-menu .social_links {
-    --font-size-rem: 1.6;
+    --font-size: 1.6;
     margin-top: .5em;
 }
 
