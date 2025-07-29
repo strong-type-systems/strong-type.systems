@@ -5,5 +5,8 @@ eleventyNavigation:
   order: 4
 ---
 
+# {{ title }}
 
-<img style="width:100%" src="https://placecats.com/1600/900" />
+<span class="phone">Phone: <a href="tel:+4916094910615">+49 160 94 91 06 15</a><span><br />
+<span class="mail">E-Mail <a class="email" href="mailto:hello@strong-type.systems">hello@strong-type.systems</a></span><br />
+<span class="web">Internet <a href="https://strong-type.systems">strong-type.systems</a></span><br />
