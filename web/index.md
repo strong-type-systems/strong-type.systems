@@ -7,7 +7,7 @@ eleventyNavigation:
 
 Strong Type Systems is active at the intersection of typography, software
 development and design, combining expertise from different domains, true
-creative thinking and <span class="nowrap">proficiency.</span> ([… more]({{rootpat}}/about))
+creative thinking and <span class="nowrap">proficiency.</span> ([… more about us]({{rootpat}}/about))
 
 <section class="news">
 {% heading 'h2', 'Latest News', 'latest-news' %}
