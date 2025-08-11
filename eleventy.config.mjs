@@ -109,6 +109,11 @@ export default async function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy(`${dir.input}${rootPath}/css`);
     eleventyConfig.addPassthroughCopy(`${dir.input}${rootPath}/js`);
     eleventyConfig.addPassthroughCopy(`${dir.input}${rootPath}/img`);
+
+    eleventyConfig.addPassthroughCopy(`${dir.input}${rootPath}/CNAME`);
+    eleventyConfig.addPassthroughCopy(`${dir.input}${rootPath}/.nojekyll`);
+
+
     let mdOptions = {
         html: true,
         // breaks: true,
