@@ -1,0 +1,774 @@
+
+
+
+@property --length {
+  syntax: "<length>";
+  initial-value: 0pt;
+  inherits: true;
+}
+
+* {
+    --length: 1rem;
+    /* https://dev.to/janeori/css-type-casting-to-numeric-tanatan2-scalars-582j
+     * safari bug filed, requires calc() wrapper, firefox bug requires 10k */
+    --pt-document-font-size: calc(10000 * tan(atan2(var(--length), 10000pt)));
+    --document-font-size-scale: 1.2;
+    --pt-document-font-size-fallback: calc(12 * var(--document-font-size-scale));
+    --font-size-constant-pt: var(--pt-document-font-size, --pt-document-font-size-fallback);
+
+    font-variation-settings: "opsz" calc(var(--font-size-constant-pt) * var(--font-size)),
+        "YTDE" var(--font-ytde, var(--font-ytde-default)),
+        "wdth" var(--font-wdth, 100),
+        "wght" var(--font-wght, 400)
+        ;
+    font-size: calc(1pt * var(--font-size-constant-pt) * var(--font-size));
+}
+
+:root{
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+    font-size: calc(1rem * var(--document-font-size-scale));
+    --font-size: 1;
+    /* setting document rem */
+    font-family: 'RobotoFlex', sans;
+    --font-ytde-default: -203;
+    --font-ytde-min: -130; /* global/axis min is around -100*/
+    overflow-y: scroll;
+}
+
+:root {
+    --text-color: black;
+    --highlight-color: #c83737;
+    color: var(--text-color);
+    /* To change the background color in CSS, wich is hardcoded right now (#23c83737)
+     *  use flter to dye e.g.:
+     *     fiilter: hue-rotate(123deg) saturate(0.5) brightness(390%) saturate(2)
+     *
+     *  Note: using \ to escape newlines works well in Chrome and Firefox
+     * but it destroys syntax highlighting in my editor. Actually, having
+     * a full stop at the end of this comment and some magic(?) number
+     * of characters in the last line restores syntax highlighting again.
+     */
+     --sts-signet-url: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='70' height='70'>\
+          <path fill='%23c83737' d='M 35,0 16.736246,18.263753 c 2.053647,0.0012 3.889897,0.234455 5.505268,0.706205 0.763696,0.217407 1.48795,0.484622 2.175185,0.799843 h 21.133438 c 0.687235,-0.315372 1.411482,-0.582398 2.175185,-0.799843 1.623992,-0.474282 3.471492,-0.707495 5.538432,-0.706205 z M 16.584082,23.456887 c -0.793339,0 -1.502145,0.104126 -2.126416,0.312134 -0.61126,0.208008 -1.098982,0.520273 -1.463128,0.936402 -0.351152,0.416168 -0.526727,0.936383 -0.526727,1.560672 0,0.507222 0.149554,0.962444 0.448694,1.365586 0.299138,0.390158 0.825864,0.786831 1.580179,1.190013 0.754326,0.390156 1.807773,0.845377 3.160358,1.365586 3.225369,0.949439 5.670436,2.139422 7.335154,3.570036 1.677706,1.417589 2.516583,3.34897 2.516583,5.793991 0,1.677732 -0.455206,3.108388 -1.365587,4.291845 -0.910393,1.17051 -2.178445,2.067907 -3.804137,2.692159 -1.625694,0.611113 -3.518023,0.916893 -5.67694,0.916893 -1.649243,0 -3.164144,-0.115024 -4.549357,-0.339445 L 35,70 57.896996,47.103004 c -1.396744,0.22907 -2.926052,0.347249 -4.592274,0.347249 -2.15891,0 -4.051228,-0.305628 -5.676942,-0.916893 -1.625707,-0.624252 -2.893732,-1.521687 -3.804136,-2.692158 -0.910362,-1.183533 -1.365587,-2.614114 -1.365587,-4.291846 0,-2.445021 0.838889,-4.376402 2.516583,-5.793991 1.664699,-1.430613 4.109784,-2.620597 7.335154,-3.570035 1.352585,-0.52021 2.406013,-0.97543 3.160358,-1.365587 0.754296,-0.403182 1.281192,-0.799893 1.58018,-1.190012 0.29881,-0.40262 0.448305,-0.857208 0.448693,-1.363636 -3.72e-4,-0.623409 -0.176013,-1.144945 -0.526727,-1.560672 -0.364142,-0.416129 -0.851864,-0.728394 -1.463129,-0.936402 -0.624247,-0.208008 -1.333072,-0.312134 -2.126415,-0.312134 -0.923386,0 -1.794786,0.08883 -2.614123,0.271166 -0.815604,0.18113 -1.444589,0.38077 -1.886462,0.600859 l -0.158017,0.74522 h -0.0039 l -0.643777,3.062817 h -5.072187 v -3.062817 h -4.58057 v 22.044479 l 2.965275,0.624268 v 3.99922 h -12.77799 v -3.99922 l 2.965275,-0.624268 V 25.074132 h -4.613734 v 3.062817 h -5.072181 l -0.643777,-3.062817 -0.01171,-0.05463 -0.146313,-0.688646 C 20.646491,24.110092 20.016152,23.909634 19.1982,23.728051 18.378859,23.545713 17.507466,23.456885 16.584077,23.456885 Z m 47.329301,5.456496 c -0.180712,0.523861 -0.417802,1.007702 -0.717909,1.447522 -0.76732,1.105501 -1.931344,2.061409 -3.492001,2.867733 -1.560674,0.806362 -3.557044,1.59971 -5.989075,2.380024 -1.079453,0.416205 -1.937836,0.825885 -2.575108,1.229028 -0.637272,0.390158 -1.09227,0.806359 -1.365587,1.248537 -0.2861,0.442178 -0.429184,0.942902 -0.429184,1.502147 -1.2e-5,0.585216 0.149704,1.085978 0.448692,1.502145 0.299109,0.416055 0.741316,0.73469 1.326571,0.955911 0.585212,0.208008 1.31357,0.312134 2.18494,0.312134 1.248536,0 2.399538,-0.156 3.452984,-0.468201 1.053447,-0.32515 1.788285,-0.721785 2.204448,-1.190012 l 0.585252,-3.784627 h 5.286773 v 3.250098 L 70,35 Z M 6.0612564,28.938744 0,35 5.1326571,40.132658 v -3.214983 h 5.2867739 l 0.585251,3.784627 c 0.416182,0.468226 1.151001,0.864975 2.204448,1.190012 1.053458,0.312277 2.204456,0.468201 3.452985,0.468201 0.871377,0 1.599693,-0.104126 2.18494,-0.312134 0.585254,-0.221221 1.027431,-0.539857 1.32657,-0.955911 0.299124,-0.416205 0.448692,-0.916892 0.448692,-1.502146 0,-0.559243 -0.143069,-1.059968 -0.429184,-1.502146 C 19.920004,37.646 19.464821,37.229798 18.827546,36.839641 18.190274,36.436498 17.331891,36.026818 16.252438,35.610613 13.8204,34.830298 11.824033,34.036951 10.263364,33.230589 8.7027015,32.424265 7.5386817,31.466368 6.7713617,30.360905 6.4760035,29.928052 6.2409671,29.453355 6.0612564,28.938744 Z' />\
+       </svg>");
+    --social-mark-github: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30'>\
+          <path fill='%2300000' d='m14.999 0c-8.283 0-14.999 6.716-14.999 15 0 6.628 4.2976 12.249 10.258 14.233.7505.1374 1.024-.3253 1.024-.7226 0-.3561-.0129-1.3-.0203-2.5507-4.1723.9053-5.0527-2.012-5.0527-2.012-.68235-1.7321-1.6659-2.1934-1.6659-2.1934-1.3619-.9307.10314-.912.10314-.912 1.5056.1067 2.2975 1.5453 2.2975 1.5453 1.338 2.2921 3.5112 1.6307 4.3658 1.2467.1363-.9693.5231-1.6307.9522-2.0053-3.3307-.3787-6.8328-1.6654-6.8328-7.4134 0-1.6374.58474-2.976 1.5443-4.0254-.15469-.37863-.66946-1.904.14641-3.9693 0 0 1.2597-.404 4.1254 1.5374 1.1962-.332 2.4798-.49867 3.7551-.504 1.2736.005 2.5572.172 3.7552.504 2.8639-1.9414 4.1208-1.5374 4.1208-1.5374.8187 2.0654.3039 3.5907.1493 3.9693.9613 1.0494 1.5424 2.388 1.5424 4.0254 0 5.7627-3.5075 7.0307-6.8493 7.4014.5387.464 1.0184 1.3787 1.0184 2.7787 0 2.004-.0184 3.6227-.0184 4.1147 0 .4013.2699.868 1.0314.7213 5.956-1.988 10.25-7.6067 10.25-14.232 0-8.2841-6.7166-15-15.001-15' />\
+       </svg>");
+    --social-mark-twitter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30'>\
+          <path fill='%23000000' d='m30 15c0 8.2875-6.7125 15-15 15s-15-6.7125-15-15 6.7125-15 15-15 15 6.7125 15 15zm-17.745 7.9125c6.6525 0 10.29-5.5125 10.29-10.29 0-.15749 0-.315-.008-.465.705-.51 1.32-1.1475 1.8075-1.875-.645.285-1.3425.48-2.0775.57.75-.45 1.32-1.155 1.59-2.0025-.69751.41249-1.47.71249-2.295.87749-.66-.705-1.5975-1.14-2.64-1.14-1.995 0-3.615 1.62-3.615 3.615 0 .285.03.56251.09747.825-3.0075-.15-5.67-1.59-7.455-3.78-.30749.53251-.48751 1.155-.48751 1.815 0 1.2525.63751 2.3625 1.6125 3.0075-.59249-.01507-1.1475-.18-1.635-.45v.04493c0 1.755 1.245 3.21 2.9025 3.5475-.3.08253-.62251.12747-.95251.12747-.23249 0-.45749-.02253-.68249-.06747.45749 1.44 1.7925 2.4825 3.375 2.5125-1.2375.96751-2.7975 1.545-4.4925 1.545-.29251 0-.57751-.01507-.86251-.05253 1.5825 1.035 3.4875 1.635 5.5275 1.635' />\
+       </svg>");
+    --social-mark-instagram: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30'>\
+          <path fill='%23000000' d='m15 .49999c-3.938 0-4.4319.01732-5.9785.08789-1.5434.07039-2.5972.31542-3.5195.67383-.9535.37056-1.7622.86578-2.5684 1.6719-.8061.8061-1.3013 1.6149-1.6719 2.5684-.35843.92231-.60339 1.9762-.67383 3.5195-.07055 1.5466-.08789 2.0405-.08789 5.9785 0 3.9379.01734 4.4319.08789 5.9785.07044 1.5434.3154 2.5972.67383 3.5195.37055.9536.86577 1.7623 1.6719 2.5684s1.6149 1.3013 2.5684 1.6719c.92233.3584 1.9762.6034 3.5195.6738 1.5466.0706 2.0405.0879 5.9785.0879 3.9379 0 4.4319-.0173 5.9785-.0879 1.5434-.0704 2.5972-.3154 3.5195-.6738.9536-.3706 1.7622-.8658 2.5684-1.6719.8061-.8061 1.3013-1.6148 1.6719-2.5684.3584-.9223.6034-1.9761.6738-3.5195.0706-1.5466.0879-2.0406.0879-5.9785 0-3.938-.0173-4.4319-.0879-5.9785-.0704-1.5434-.3154-2.5972-.6738-3.5195-.3706-.9535-.8658-1.7623-1.6719-2.5684-.8062-.80609-1.6148-1.3013-2.5684-1.6719-.9223-.35841-1.9761-.60344-3.5195-.67383-1.5466-.07057-2.0406-.08789-5.9785-.08789zm0 2.6133c3.8716 0 4.3304.01422 5.8594.08399 1.4137.06446 2.1804.30142 2.6914.5.6768.26304 1.1606.57661 1.668 1.084.5074.50743.8209.99115 1.0839 1.668.1986.51094.4356 1.2777.5 2.6914.0698 1.529.084 1.9877.084 5.8594 0 3.8716-.0142 4.3304-.084 5.8594-.0644 1.4137-.3014 2.1804-.5 2.6914-.263.6768-.5765 1.1606-1.0839 1.668s-.9912.8209-1.668 1.0839c-.511.1986-1.2777.4356-2.6914.5-1.5288.0698-1.9875.084-5.8594.084-3.872 0-4.3306-.0142-5.8594-.084-1.4137-.0644-2.1805-.3014-2.6914-.5-.67683-.263-1.1606-.5765-1.668-1.0839s-.82095-.9912-1.084-1.668c-.19858-.511-.4355-1.2777-.5-2.6914-.06977-1.529-.08399-1.9878-.08399-5.8594 0-3.8717.01422-4.3304.08399-5.8594.0645-1.4137.30142-2.1805.5-2.6914.26303-.67682.5766-1.1606 1.084-1.668.50741-.50743.99114-.82094 1.668-1.084.51094-.19858 1.2777-.43554 2.6914-.5 1.529-.06976 1.9877-.08399 5.8594-.08399zm7.7402 2.4062c-.9609 0-1.7402.77925-1.7402 1.7402 0 .96098.7793 1.7402 1.7402 1.7402.961 0 1.7403-.77925 1.7403-1.7402 0-.96099-.7793-1.7402-1.7403-1.7402zm-7.7402 2.0352c-4.1123 0-7.4453 3.333-7.4453 7.4453s3.333 7.4453 7.4453 7.4453 7.4453-3.333 7.4453-7.4453-3.333-7.4453-7.4453-7.4453zm0 2.6113c2.6694 0 4.834 2.1646 4.834 4.834s-2.1646 4.834-4.834 4.834-4.834-2.1646-4.834-4.834 2.1646-4.834 4.834-4.834z' />\
+       </svg>");
+    --social-mark-rss: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30'>\
+          <path fill='%23000000' d='m15 0c-8.2843 0-15 6.7157-15 15 0 3.9782 1.5804 7.7936 4.3934 10.607 2.813 2.813 6.6284 4.3934 10.607 4.3934 8.2843 0 15-6.7157 15-15s-6.7157-15-15-15zm-7.8275 6.1621c9.2048 0 16.667 7.4619 16.667 16.667h-3.3333c0-7.3638-5.9696-13.333-13.333-13.333zm0 5.6667c6.0752 0 11 4.9249 11 11h-3.3333c0-4.2342-3.4325-7.6667-7.6667-7.6667zm1.6084 6.8073c1.4469 0 2.6198 1.1645 2.6198 2.6009s-1.1729 2.6009-2.6198 2.6009-2.6198-1.1645-2.6198-2.6009c-1e-5-1.4364 1.1729-2.6009 2.6198-2.6009z' />\
+       </svg>");
+    --social-mark-mastodon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='74' height='79' viewBox='0 0 74 79'>\
+          <path fill='%23000000' d='M73.7014 17.9592C72.5616 9.62034 65.1774 3.04876 56.424 1.77536 54.9472 1.56019 49.3517.7771 36.3901.7771H36.2933c-12.9652.0-15.7468.78309-17.2236.99826C10.56 3.01348 2.78877 8.91838.903306 17.356-.00357857 21.5113-.100361 26.1181.068112 30.3439.308275 36.404.354874 42.4535.91406 48.489c.38658 4.009 1.06096 7.9861 2.01809 11.9015 1.79226 7.2312 9.04735 13.249 16.15545 15.704C26.6979 78.6548 34.8821 79.0799 42.724 77.3221 43.5866 77.1245 44.4398 76.8953 45.2833 76.6342 47.1867 76.0381 49.4199 75.3714 51.0616 74.2003 51.0841 74.1839 51.1026 74.1627 51.1156 74.1382 51.1286 74.1138 51.1359 74.0868 51.1368 74.0592V68.2108C51.1364 68.185 51.1302 68.1596 51.1185 68.1365 51.1069 68.1134 51.0902 68.0932 51.0695 68.0773 51.0489 68.0614 51.0249 68.0503 50.9994 68.0447 50.9738 68.0391 50.9473 68.0392 50.9218 68.045c-5.0242 1.181-10.1727 1.773-15.3382 1.7637C26.694 69.8087 24.3031 65.6569 23.6184 63.9285 23.0681 62.4347 22.7186 60.8764 22.5789 59.2934 22.5775 59.2669 22.5825 59.2403 22.5934 59.216 22.6043 59.1916 22.621 59.1702 22.6419 59.1533 22.6629 59.1365 22.6876 59.1248 22.714 59.1191 22.7404 59.1134 22.7678 59.1139 22.794 59.1206 27.7345 60.2936 32.799 60.8856 37.8813 60.8843c1.2223.0 2.441.0 3.6634-.0317000000000007C46.6562 60.7115 52.0437 60.454 57.0728 59.4874 57.1983 59.4628 57.3237 59.4416 57.4313 59.4098c7.9325-1.4991 15.4815-6.2047 16.2486-18.1203C73.7086 40.8204 73.7803 36.3758 73.7803 35.889 73.7839 34.2347 74.3216 24.1533 73.7014 17.9592zM61.4925 47.6918H53.1514V27.5855c0-4.2329-1.7923-6.3917-5.4378-6.3917-4.0075.0-6.0148 2.5538-6.0148 7.5981V39.7974h-8.291V28.7919c0-5.0443-2.0109-7.5981-6.0184-7.5981-3.624.0-5.4342 2.1588-5.4378 6.3917V47.6918h-8.334V26.9752c0-4.2329 1.0981-7.5957 3.2942-10.0884 2.2654-2.4868 5.237-3.7637 8.9255-3.7637 4.2691.0 7.4952 1.6155 9.6459 4.8431L37.5587 21.3949l2.079-3.4287c2.1507-3.2276 5.3768-4.8431 9.6388-4.8431 3.6849.0 6.6564 1.2769 8.929 3.7637 2.1962 2.4904 3.2942 5.8532 3.2942 10.0884L61.4925 47.6918z' />\
+          </svg>");
+}
+
+body {
+    flex-direction: column;
+}
+
+
+.sts_logo, .sts_logo * {
+    font-variation-settings: initial;
+    font-size: inherit;
+}
+.sts_logo {
+     font-family: 'RobotoSlab', serif;
+     color: var(--text-color);
+     /* should must not be inline but block or inline-block work
+      * inline-block is nice to center it using text-align.
+      */
+     display:inline-block;
+     text-align: left;
+
+     -webkit-print-color-adjust: exact !important;   /* Chrome, Safari, Edge */
+    color-adjust: exact !important;
+
+
+     /* size of the svg logo */
+     --signet-size: 1.75em;
+     --logo-font-size-protocol: 0.26667;
+     /* positioning of the protocol and subsequent of the
+      * rest of the logo main text.
+      */
+     --x-translate: calc((1.525 + var(--x-compensate-missing-protocol, 0) * 0.475));
+     --y-translate: 0.3;
+     /* wrapped version */
+     --wrapped-y-translate: -0.1;
+     /* the internal em of the logo */
+     font-size: calc(1rem * var(--logo-font-size-numeric) * var(--logo-blow-up));
+     line-height: 1em;
+}
+
+.sts_logo-wrapper {
+     display: inline-block;
+     min-height: var(--signet-size);
+     padding-right: calc(var(--x-translate) * 1em);
+
+     text-decoration: none;
+     color: var(--text-color);
+}
+
+.sts_logo-wrapper::before {
+    content: "";
+    background: no-repeat var(--sts-signet-url);
+    background-size: contain;
+    position: absolute;
+    width: var(--signet-size);
+    height: var(--signet-size);
+}
+
+.sts_logo-protocol{
+     font-size: calc( 1em * var(--logo-font-size-protocol));
+     font-weight: 400;
+}
+
+.sts_logo-strong,
+.sts_logo-type {
+     font-weight: 800;
+}
+
+.sts_logo-hyphen {
+     /* A manual kerning as the current versio of the font is missing this. */
+     margin-right: -0.1em;
+}
+
+.sts_logo-systems {
+     font-weight: 100;
+}
+
+.sts_logo-strong,
+.sts_logo-type,
+.sts_logo-systems {
+     position: relative;
+     top: calc(1em * var(--y-translate) );
+     left: calc(1em * var(--x-translate) );
+}
+.sts_logo-protocol {
+     position: relative;
+     top: calc(1em * (var(--y-translate) / var(--logo-font-size-protocol)));
+     left: calc(1em * (var(--x-translate) / var(--logo-font-size-protocol)));
+}
+
+
+/* using custom properties this could also be done in @media queries */
+/* line break version*/
+/* no automatic line breaks*/
+.sts_logo-wrapper {
+     white-space: nowrap;
+}
+
+/* manual line breaks */
+.sts_logo-strong::before,
+.sts_logo-systems::before{
+     content: "";
+     display: block;
+}
+
+/* move closer to protocol */
+.sts_logo-strong,
+.sts_logo-type,
+.sts_logo-systems {
+     top: calc(1em * var(--wrapped-y-translate));
+}
+
+/* right align */
+.sts_logo-systems {
+    display: block;
+    text-align: right;
+}
+
+
+
+
+/* TODO make a logo without the url protocol and special characters*/
+
+.sts_logo {
+     --wrapped-y-translate: 1.1;
+     --x-compensate-missing-protocol: 0;
+     --logo-blow-up: 1.3;
+     /* optically compensate for the left red tip of the logo*/
+     margin-left: -0.2em;
+}
+
+.sts_logo {
+    /*
+     * original is 1.525
+     * without protocol is 2
+     * so the protocol is responsible for 0.475
+     */
+     --x-compensate-missing-protocol: 1;
+}
+
+/* END logo setup */
+
+/* END old main.css */
+
+
+
+/* .sts_logo-no_url */
+.sts_logo-protocol, .sts_logo-hyphen, .sts_logo-dot {
+    display: none;
+}
+.sts_logo-space {
+    display: initial;
+}
+
+.sts_logo {
+    --x-compensate-missing-protocol: 1;
+}
+
+
+.sts_logo {
+     --wrapped-y-translate: 1.1;
+     --x-compensate-missing-protocol: 0;
+     padding-bottom: calc(1em * var(--wrapped-y-translate));
+}
+
+
+
+/* with url */
+/* The em base in media queries comes from the user’s default setting
+ * (usually 16px browser if not changed).
+ * Also, the browser zoom changes this, so when zooming in, the page
+ * changes into moblile as well, but it would so also with pixels in
+ * the query.
+ * UNFORRTUNATELY: changing the :root font-size is not affecting the
+ * media query results,hence it's not super useful.
+ */
+@media (min-width: 50em) { /* 800px at 12pt/16px */
+    .sts_logo-protocol, .sts_logo-hyphen, .sts_logo-dot {
+        display: initial;
+    }
+    .sts_logo-space {
+        display: none;
+    }
+    .sts_logo {
+        --x-compensate-missing-protocol: 0;
+        --wrapped-y-translate: -0.1;
+        padding-bottom: 0;
+    }
+}
+
+header{
+    margin-right: 1em;
+    /* for nav menu alignmnet right */
+    display: block;
+    align-items: initial;
+}
+
+.main-menu {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.main-menu > ul li {
+    border-bottom: 1px dotted;
+}
+.main-menu > ul li:last-child {
+    border-bottom: none;
+}
+
+.main-menu .social_links {
+    display: flex;
+    gap: .4em;
+}
+
+.main-menu .social_links a {
+  margin: .2em 0 0 0;
+}
+
+article {
+    margin-left: 0;
+}
+
+main .heading_anchor.heading_anchor{
+    text-decoration: none;
+    --font-size: 1;
+    color: grey;
+    font-weight: normal;
+    --font-wght: 400;
+    --font-wdth: 100;
+    margin-inline-start: 0;
+}
+
+article > .page-nav,
+main > article p:first-child {
+    margin-top: 1em;
+}
+
+:root {
+    --animation-position-mediaq: 20;
+    --logo-font-size-numeric: 1.5;
+    --animation-progress: 0;
+}
+
+/* 24em 384px is good for the break, will stay flat at top for
+ * bigger phones then.
+ */
+@media (min-width: 24em) {
+    :root {
+        --animation-progress: 0.05;
+        --animation-position-mediaq: 24;
+        --logo-font-size-numeric: 1.6333333333333333;
+    }
+}
+
+@media (min-width: 25em) {
+    :root {
+        --animation-progress: 0.0625;
+        --animation-position-mediaq: 25;
+        --logo-font-size-numeric: 1.6666666666666667;
+    }
+}
+@media (min-width: 30em) {
+    :root {
+        --animation-progress: 0.125;
+        --animation-position-mediaq: 30;
+        --logo-font-size-numeric: 1.8333333333333335;
+    }
+
+}
+@media (min-width: 35em) {
+    :root {
+        --animation-progress: 0.1875;
+        --animation-position-mediaq: 35;
+        --logo-font-size-numeric: 2.0;
+    }
+
+    /* unwrap logo here*/
+    .sts_logo {
+        --x-compensate-missing-protocol: 1;
+        padding-bottom: 0;
+        /* this is only used in small sizes */
+        --logo-blow-up: 1;
+        /* uncompensate */
+        margin-left: -0.2em;
+    }
+
+    .sts_logo-wrapper {
+        white-space: normal;
+    }
+
+    .sts_logo-strong::before,
+    .sts_logo-systems::before{
+        content: none;
+        display: none;
+    }
+
+    .sts_logo-strong,
+    .sts_logo-type,
+    .sts_logo-systems {
+        top: calc(1em * var(--y-translate));
+        left: calc(1em * var(--x-translate));
+    }
+
+    .sts_logo-protocol {
+        top: calc(1em  * (var(--y-translate) / var(--logo-font-size-protocol)));
+        left: calc(1em * (var(--x-translate) / var(--logo-font-size-protocol)));
+    }
+
+    .sts_logo-systems {
+        display: inline;
+        text-align: initial;
+    }
+
+    .main-menu > ul {
+        align-items: center;
+        display: flex;
+        gap: calc(.2rem * var(--logo-font-size-numeric));
+    }
+
+    .main-menu > ul li{
+        border: none;
+        text-align: right;
+    }
+
+    .main-menu .social_links a {
+        margin: 0;
+    }
+
+    .main-menu,
+    article {
+        margin-left: calc(1.85rem * var(--logo-font-size-numeric));
+    }
+
+    main .heading_anchor.heading_anchor {
+        margin-inline-start: -.8em;
+    }
+    article > .page-nav {
+        margin-top: 1em;
+    }
+}
+@media (min-width: 40em) {
+    :root {
+        --animation-progress: 0.25;
+        --animation-position-mediaq: 40;
+        --logo-font-size-numeric: 2.166666666666667;
+    }
+}
+@media (min-width: 45em) {
+    :root {
+        --animation-progress: 0.3125;
+        --animation-position-mediaq: 45;
+        --logo-font-size-numeric: 2.3333333333333335;
+    }
+}
+
+@media (min-width: 50em) { /* 800px at 12pt/16px */
+    :root {
+        --animation-progress: 0.375;
+        --animation-position-mediaq: 50;
+        --logo-font-size-numeric: 2.5;
+    }
+    .sts_logo {
+        --x-compensate-missing-protocol: 0;
+    }
+    .main-menu,
+    article {
+        margin-left: calc(2.3rem * var(--logo-font-size-numeric));
+    }
+}
+@media (min-width: 55em) {
+    :root {
+        --animation-progress: 0.4375;
+        --animation-position-mediaq: 55;
+        --logo-font-size-numeric: 2.666666666666667;
+    }
+}
+@media (min-width: 60em) {
+    :root {
+        --animation-progress: 0.5;
+        --animation-position-mediaq: 60;
+        --logo-font-size-numeric: 2.8333333333333335;
+    }
+}
+@media (min-width: 64em) { /* 1024px at 12pt/16px */
+    :root {
+        --animation-progress: 0.55;
+        --animation-position-mediaq: 64;
+        --logo-font-size-numeric: 2.966666666666667;
+    }
+
+    /* wrap logo here */
+
+    /* line break version*/
+    /* no automatic line breaks*/
+    .sts_logo .sts_logo-wrapper {
+         white-space: nowrap;
+    }
+
+    /* manual line breaks */
+    .sts_logo .sts_logo-strong::before,
+    .sts_logo .sts_logo-systems::before{
+         content: "";
+         display: block;
+    }
+
+    /* move closer to protocol */
+    .sts_logo .sts_logo-strong,
+    .sts_logo .sts_logo-type,
+    .sts_logo .sts_logo-systems {
+         top: calc(1em * var(--wrapped-y-translate));
+    }
+
+    /* right align */
+    .sts_logo-systems {
+        display: block;
+        text-align: right;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+    }
+
+    header{
+        /* for nav menu alignmnet right */
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap-reverse;
+        align-items: end;
+        margin-right: 1.5em;
+    }
+
+    .main-menu > ul {
+        text-align: right;
+    }
+
+    .main-menu > ul {
+        display: initial;
+    }
+
+    .main-menu .social_links a {
+        margin: 0;
+    }
+
+
+    article {
+        /* only in two column layout aim to match `article h1` with
+         *  the "Strong-Type" base line.
+         */
+        margin-top: calc(1.25rem * var(--logo-font-size-numeric));
+        margin-left: 0;
+    }
+
+    main > article p:first-child,
+    article > .page-nav {
+        margin-top: calc(1.3em * var(--logo-font-size-numeric));
+    }
+
+}
+
+@media (min-width: 65em) {
+    :root {
+        --animation-progress: 0.5625;
+        --animation-position-mediaq: 65;
+        --logo-font-size-numeric: 3.0;
+    }
+}
+@media (min-width: 70em) { /* 1120px at 12pt/16px */
+    :root {
+        --animation-progress: 0.625;
+        --animation-position-mediaq: 70;
+        --logo-font-size-numeric: 3.166666666666667;
+    }
+}
+@media (min-width: 75em) { /* 1200px at 12pt/16px */
+    :root {
+        --animation-progress: 0.6666666666666666;
+        --animation-position-mediaq: 75;
+        --logo-font-size-numeric: 3.2777777777777777;
+    }
+}
+@media (min-width: 80em) {
+    :root {
+        --animation-progress: 0.75;
+        --animation-position-mediaq: 80;
+        --logo-font-size-numeric: 3.5;
+    }
+}
+@media (min-width: 85em) {
+    :root {
+        --animation-progress: 0.8125;
+        --animation-position-mediaq: 85;
+        --logo-font-size-numeric: 3.666666666666667;
+    }
+}
+@media (min-width: 90em) {
+    :root {
+        --animation-progress: 0.875;
+        --animation-position-mediaq: 90;
+        --logo-font-size-numeric: 3.8333333333333335;
+    }
+}
+@media (min-width: 95em) {
+    :root {
+        --animation-progress: 0.9375;
+        --animation-position-mediaq: 95;
+        --logo-font-size-numeric: 4.0;
+    }
+}
+@media (min-width: 100em) {
+    :root {
+        --animation-progress: 1.0;
+        --animation-position-mediaq: 100;
+        --logo-font-size-numeric: 4.166666666666667;
+    }
+}
+
+
+/* start page setup */
+
+
+body {
+    margin: 1em auto;
+    padding: 0 1em;
+    max-width: 60em;
+    display: flex;
+    flex-wrap: wrap;
+    background: white;
+}
+
+header, main {
+     flex: 1;
+}
+
+footer {
+    flex: 0 0 100%;
+    margin-top: 5em;
+    padding-top: 1em;
+    border-top: .125em solid var(--text-color);
+    text-align: right;
+}
+
+article {
+    font-family: 'RobotoFlex', sans;
+    --max-line-len: 30;
+    max-width: calc(1em * var(--max-line-len));
+    --hyphens: auto;
+    -webkit-hyphens: var(--hyphens);
+       -moz-hyphens: var(--hyphens);
+        -ms-hyphens: var(--hyphens);
+            hyphens: var(--hyphens);
+    /* unfortunately --animation-position-mediaq is not a good property
+     * to determine actual line length. It's better in the lower range
+     * though, as we have a single column layout then.
+     */
+    --max-pos-mediaq: 40;
+    --min-pos-mediaq: 20;
+    --line-len-t: calc((min(var(--max-pos-mediaq), var(--animation-position-mediaq)) - var(--min-pos-mediaq)) / (var(--max-pos-mediaq) - var(--min-pos-mediaq)));
+    --line-height: calc(1 + 0.3 * var(--line-len-t));
+    line-height: var(--line-height);
+    --font-size: 1.1;
+    --font-ytde: calc( ((var(--font-ytde-default) - var(--font-ytde-min)) * var(--line-len-t)) + var(--font-ytde-min));
+}
+
+h1, h2, h3, p {
+    margin-top: calc(.5rem * var(--line-height)) ;
+    margin-bottom: calc(.5rem * var(--line-height));
+}
+
+h2, h3, h4 {
+    text-transform: uppercase;
+}
+
+h1 {
+    font-family: "RobotoSlab", serif;
+}
+
+article > h1:first-child {
+  margin-top: 0;
+}
+
+h1 {
+    /* The value 0.8 is to make the uppercase roughly fit to the x-height
+     * of "Strong Type" in two columns. 2.3 is never reached in two-columns
+     * but when in one-column layout, we don't want to shrink further.
+     */
+    --font-size: calc(max(2.3, 0.8 * var(--logo-font-size-numeric)));
+    --font-wght: 170;
+}
+
+h2 {
+    --font-wght: 500;
+    --font-wdth: 80;
+    --font-size: 1.2;
+    font-family: "RobotoFlex";
+}
+
+h3 {
+   --font-wght: 440;
+}
+
+main ul, main ol {
+    padding-left: 1em;
+}
+
+.main-menu{
+     --font-size: 1.1;
+    text-transform: uppercase;
+    --font-wght: 500;
+    letter-spacing: .05em;
+}
+
+.main-menu > ul {
+    font-family: 'RobotoFlex', sans;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main-menu > ul li > a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.main-menu > ul li.active a {
+    color: var(--highlight-color);
+}
+
+footer a, main a[href] {
+    color: var(--text-color);
+    text-decoration: underline solid;
+    text-decoration-thickness: from-font;
+}
+
+/* preventing FireFox from breaking the last word of a paragraph
+ * Chrome behaves better in this case.
+ */
+.nowrap {
+    --hyphens: none;
+    white-space: nowrap;
+}
+
+.main-menu .social_links {
+    --font-size: 1.6;
+    margin-top: .5em;
+}
+
+a.social_link {
+    position:relative;
+    display: inline-block;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 1em;
+    height: 1em;
+
+}
+
+a.social_link::before {
+    content: "";
+    background-size: contain;
+    position: absolute;
+    display: block;
+    left:0;
+    top: 0;
+    width: 1em;
+    height: 1em;
+}
+
+.social_link-github::before {
+    background: no-repeat var(--social-mark-github);
+}
+
+.social_link-instagram::before {
+    background: no-repeat var(--social-mark-instagram);
+}
+
+.social_link-twitter::before {
+    background: no-repeat var(--social-mark-twitter);
+}
+
+.social_link-rss::before {
+    background: no-repeat var(--social-mark-rss);
+}
+
+
+.social_link-mastodon::before {
+    background: no-repeat var(--social-mark-mastodon);
+}
+
+ol.news{
+    list-style: none;
+    padding: 0;
+}
+.news article{
+    margin: 0;
+    h1 {
+        --font-size: 1.6;
+        --font-wght: 330;
+        a {
+            text-decoration-thickness: 1.5pt;
+        }
+        margin: 0;
+    }
+}
