@@ -6,6 +6,9 @@
   <link rel="stylesheet" href="{{ "/css/fonts/fonts.css" | url }}">
   <link rel="stylesheet" href="{{ "/css/main.css" | url }}">
 
+  <link rel="alternate" type="application/rss+xml"
+    title="Atom Newsfeed" href="/feed.xml" />
+
 {%- for module in page.modules %}
   <script src="{{ module | url }}" async type="module"></script>
 {%- endfor -%}
