@@ -8,8 +8,8 @@ eleventyNavigation:
 # {{ title }}
 
 Strong Type Systems is active at the intersection of typography, software
-development and design, combining expertise from different domains, true
-creative thinking and <span class="nowrap">proficiency.</span>
+development, and design, combining expertise from different domains, true
+creative thinking, and <span class="nowrap">proficiency.</span>
 
 Founded by Lasse Fister in 2022 and located in Nuremberg, Germany the
 company works with international clients and a global network of experts.
