@@ -4,7 +4,7 @@
   <subtitle>Strong Type Systems is active at the intersection of typography, software development and design, combining expertise from different domains, true creative thinking and proficiency.</subtitle>
   <link href="https://strong-type.systems/feed.xml" rel="self" />
   <link href="https://strong-type.systems/" />
-  <updated>2025-08-04T00:00:00Z</updated>
+  <updated>2025-08-11T00:00:00Z</updated>
   <id>https://strong-type.systems/</id>
   <author>
     <name>Lasse Fister</name>
@@ -12,12 +12,14 @@
   </author>
   <entry>
     <title>Website launched!</title>
-    <link href="https://strong-type.systems/news/2025-08-04%20website%20launched/" />
-    <updated>2025-08-04T00:00:00Z</updated>
-    <id>https://strong-type.systems/news/2025-08-04%20website%20launched/</id>
+    <link href="https://strong-type.systems/news/2025-08-11%20website%20launched/" />
+    <updated>2025-08-11T00:00:00Z</updated>
+    <id>https://strong-type.systems/news/2025-08-11%20website%20launched/</id>
     <content type="html">
-    &lt;p class=&quot;lead&quot;&gt;Welcome to the official site of Strong Type Systems.&lt;/p&gt;
-    &amp;lt;p&amp;gt;We’re excited to share our projects, tools, and ideas with the world. This news section will be updated with project announcements, event participation, and open-source releases — stay tuned!&amp;lt;/p&amp;gt;
+    &lt;p class=&quot;lead&quot;&gt;Welcome to the new official site of Strong Type Systems.&lt;/p&gt;
+    &amp;lt;p&amp;gt;We’re excited to share our projects, tools, and ideas with the world.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;This news section will be updated with project announcements, event participation,
+and free/libre open-source releases — stay tuned!&amp;lt;/p&amp;gt;
 </content>
   </entry>
 </feed>
