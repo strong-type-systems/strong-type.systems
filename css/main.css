@@ -19,7 +19,8 @@
     font-variation-settings: "opsz" calc(var(--font-size-constant-pt) * var(--font-size)),
         "YTDE" var(--font-ytde, var(--font-ytde-default)),
         "wdth" var(--font-wdth, 100),
-        "wght" var(--font-wght, 400)
+        "wght" var(--font-wght, 400),
+        "slnt" var(--font-slnt, 0)
         ;
     font-size: calc(1pt * var(--font-size-constant-pt) * var(--font-size));
 }
@@ -698,7 +699,18 @@ main ul, main ol {
 footer a, main a[href] {
     color: var(--text-color);
     text-decoration: underline solid;
-    text-decoration-thickness: from-font;
+    text-decoration-thickness: .1rem;
+    text-decoration-color: var(--highlight-color);
+    text-decoration-skip-ink: none;
+}
+
+em {
+    color: var(--highlight-color);
+    --font-slnt: -10;
+}
+
+strong {
+    --font-wght: 800;
 }
 
 /* preventing FireFox from breaking the last word of a paragraph
@@ -766,9 +778,6 @@ ol.news{
     h1 {
         --font-size: 1.6;
         --font-wght: 330;
-        a {
-            text-decoration-thickness: 1.5pt;
-        }
         margin: 0;
     }
 }
