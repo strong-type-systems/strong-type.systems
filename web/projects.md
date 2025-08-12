@@ -7,18 +7,18 @@ eleventyNavigation:
 
 ## TypeRoof
 
-TypeRoof is a web-application and type tooling infrastructure. It provides
+TypeRoof is *type tooling infrastructure* and a *web-application*. It provides
 type proofing applications for parametric variable fonts -- called "Layouts" --
-initially based on Video Proof and Variable Type Tools. Now, it also explores
+initially based on *Video Proof* and *Variable Type Tools*. Now, it also explores
 the world of general animation with type as a principal actor and document
 creation with semi-automated type-setting based on "Runions" -- a portmanteau
 of "Run of Text" and "Onion".
 
 Lasse Fister of Strong Type Systems is the principal architect and developer
-of TypeRoof, partnering with David Berlow of Font Bureau in order to make
-the vision of parametric typography a reality.
+of TypeRoof, partnering with David Berlow of Font Bureau in order **to make
+the vision of parametric typography a reality.**
 
-[TypeRoof](https://fontbureau.github.io/TypeRoof/docs/)
+Visit [TypeRoof](https://fontbureau.github.io/TypeRoof/docs/)!
 
 ---
 
@@ -37,5 +37,5 @@ the pandemic, under the special focus "RE:imagination" our aim was to
 rebuild the international community and strengthen the structures around
 the LGM.
 
-[LGM 2025](https://libregraphicsmeeting.org/2025/)
+Visit [LGM 2025](https://libregraphicsmeeting.org/2025/)!
 
