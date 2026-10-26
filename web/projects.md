@@ -18,7 +18,7 @@ Lasse Fister of Strong Type Systems is the principal architect and developer
 of TypeRoof, partnering with David Berlow of Font Bureau in order **to make
 the vision of parametric typography a reality.**
 
-Visit [TypeRoof](https://fontbureau.github.io/TypeRoof/docs/)!
+Visit [TypeRoof](https://typeroof.org)!
 
 ---
 
@@ -39,3 +39,18 @@ the LGM.
 
 Visit [LGM 2025](https://libregraphicsmeeting.org/2025/)!
 
+---
+
+## Libre Graphics Meeting 2026 Nuremberg, Germany
+
+We did it again. Building on the momentum of the previous year, we
+successfully hosted the 19th annual Libre Graphics Meeting in Nuremberg
+from April 22nd to 25th, 2026, further strengthening the foundation of the
+LGM community under the special focus "RE:WIRE".
+
+After two consecutive years of hosting and rebuilding, we are proud to
+pass the torch. The upcoming [2027 edition](https://libregraphicsmeeting.org/2027/)
+is moving to Linz, Austria, which we regard as a successful conclusion to
+the LGM Nuremberg chapters.
+
+Visit [LGM 2026](https://libregraphicsmeeting.org/2026/)!
